@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 if GEMINI_API_KEY:
     try:
         genai.configure(api_key=GEMINI_API_KEY)
-        model = genai.GenerativeModel('gemini-2.0-flash-exp')
+        model = genai.GenerativeModel('gemini-2.5-flash-lite')
         logger.info("✅ Gemini AI initialized successfully")
     except Exception as e:
         model = None
@@ -57,22 +57,36 @@ IMPORTANT RULES:
    - "min/minute" = minutes
    - "ghante/hour" = hours
    - "baje" = o'clock
+   - "am" = AM
+   - "pm" = PM
+   - "weekday" = in both Hindi and English (e.g. "Somvaar/Monday", "Mangalvaar/Tuesday", etc.)
+   - "Mon" = Monday, "Tue" = Tuesday, "Wed" = Wednesday, "Thu" = Thursday, "Fri" = Friday, "Sat" = Saturday, "Sun" = Sunday
+   - "next" = next occurrence of the mentioned day
 
 3. Time calculations:
    - "10 min baad" = add 10 minutes to current time
    - "2 ghante baad" = add 2 hours to current time
    - "kal 5 baje" = tomorrow at 5:00 PM (17:00)
    - "tomorrow 9am" = tomorrow at 09:00
+   - "parso 3pm" = day after tomorrow at 15:00
+   - "Monday subha 10" = next Monday at 10:00
+   - "Friday shaam 6 baje" = next Friday at 18:00
+   - "aaj 8pm" = today at 20:00
+   - "next Wednesday 7am" = next Wednesday at 07:00
+   
 
 4. Default assumptions:
    - If only hour given (like "5 baje"), assume PM if hour < 12, else keep as is
    - If "subah/morning" mentioned, use 9:00 AM
    - If "shaam/evening" mentioned, use 6:00 PM
+   - If "raat/night" mentioned, use 9:00 PM
+   - If only "kal/tomorrow" mentioned without time, assume 9:00 AM
+   - If only "aaj/today" mentioned without time, assume 9:00 AM
 
 5. Return ONLY a valid JSON object (no markdown, no extra text):
 {{
   "datetime": "YYYY-MM-DD HH:MM",
-  "reminder_text": "the actual reminder message without time info"
+  "reminder_text": "the actual reminder message without time info, trimmed, in original language, preserving case, spaces, and punctuation, if any, or null if cannot parse"
 }}
 
 6. If you cannot parse, return:

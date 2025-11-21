@@ -262,7 +262,7 @@ async def remind_ask_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "❌ Date galat format mein hai.\n\n"
             "Sahi format: YYYY-MM-DD\n"
-            "Example: 2025-11-18\n\n"
+            "Example: 2025-11-22\n\n"
             "Dobara try karo:"
         )
         return ASK_DATE

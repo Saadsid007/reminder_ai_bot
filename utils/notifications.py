@@ -11,8 +11,8 @@ def send_email_otp(email: str, otp: str):
     """Gmail SMTP se email OTP bhejo"""
     try:
         msg = MIMEMultipart('alternative')
-        msg['Subject'] = "🔐 Tumhara Reminder Bot OTP"
-        msg['From'] = GMAIL_EMAIL
+        msg['Subject'] = "🔐Email Verification OTP"
+        msg['From'] = "AstraNote - Ai Bot <{GMAIL_EMAIL}>"
         msg['To'] = email
         
         html_body = f"""
@@ -20,18 +20,18 @@ def send_email_otp(email: str, otp: str):
         <body style="font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5;">
             <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                 <h2 style="color: #4CAF50; text-align: center;">🔐 Email Verification</h2>
-                <p style="font-size: 16px; color: #333;">Namaste!</p>
-                <p style="font-size: 16px; color: #333;">Tumhara OTP yeh hai:</p>
+                <p style="font-size: 16px; color: #333;">hello!</p>
+                <p style="font-size: 16px; color: #333;">Your OTP is:</p>
                 
                 <div style="background-color: #4CAF50; color: white; padding: 20px; text-align: center; border-radius: 5px; margin: 20px 0;">
                     <h1 style="margin: 0; font-size: 36px; letter-spacing: 5px;">{otp}</h1>
                 </div>
                 
-                <p style="font-size: 14px; color: #666;">⚠️ Ye OTP 10 minute mein expire ho jayega.</p>
-                <p style="font-size: 14px; color: #666;">Agar tumne ye request nahi kiya, to is email ko ignore kar do.</p>
+                <p style="font-size: 14px; color: #666;">⚠️ This OTP will expire in 10 minutes.</p>
+                <p style="font-size: 14px; color: #666;">If you did not make this request, then ignore this email.</p>
                 
                 <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-                <p style="font-size: 12px; color: #999; text-align: center;">Sent by Reminder Bot 🤖</p>
+                <p style="font-size: 12px; color: #999; text-align: center;">Sent by AstraNote - Ai Bot 🤖</p>
             </div>
         </body>
         </html>
@@ -55,8 +55,8 @@ def send_email_reminder(email: str, text: str):
     """Gmail SMTP se email reminder bhejo"""
     try:
         msg = MIMEMultipart('alternative')
-        msg['Subject'] = "⏰ Reminder - Reminder Bot"
-        msg['From'] = GMAIL_EMAIL
+        msg['Subject'] = "⏰ Reminder Notification"
+        msg['From'] = "AstraNote - Ai Bot <{GMAIL_EMAIL}>"
         msg['To'] = email
         
         html_body = f"""
@@ -69,10 +69,10 @@ def send_email_reminder(email: str, text: str):
                     <p style="font-size: 18px; color: #333; margin: 0; white-space: pre-wrap;">{text}</p>
                 </div>
                 
-                <p style="font-size: 14px; color: #666; text-align: center;">Tumne yeh reminder pehle set kiya tha 📝</p>
+                <p style="font-size: 14px; color: #666; text-align: center;">This was your Reminder, you set Earlier📝</p>
                 
                 <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-                <p style="font-size: 12px; color: #999; text-align: center;">Sent by your Telegram Reminder Bot 🤖</p>
+                <p style="font-size: 12px; color: #999; text-align: center;">Sent by AstraNote - Ai Bot 🤖</p>
             </div>
         </body>
         </html>

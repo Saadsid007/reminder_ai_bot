@@ -34,7 +34,6 @@ async def set_bot_commands(application: Application):
         BotCommand("signup", "Channels setup/update karo"),
         BotCommand("remind", "🤖 AI reminder (10 min baad, kal 5pm)"),
         BotCommand("remindstep", "Step-by-step reminder setup"),
-        BotCommand("testremind", "20-second test reminder"),
         BotCommand("list", "Pending reminders dekho"),
         BotCommand("cancel", "Reminder cancel karo (ID se)"),
     ]
